@@ -95,6 +95,9 @@ $ gister delete --gist 960473f0df6f8e98d220
 ```
 
 ## Demo
+![](asciicast.gif)
+[Asciinema](https://asciinema.org/a/17742)
+
 
 ## Contributions
 
