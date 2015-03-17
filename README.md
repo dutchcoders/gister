@@ -1,7 +1,9 @@
 # Gister 
 
-Manage your gists from the command-line.
+Manage your gists from the command-line. You can even manage your gists using your favorite editor.
 
+## Demo
+![](demo.gif)
 
 ## Create a github access token
 
@@ -96,11 +98,6 @@ nl5887/f74a0a0837f609af9552 test
 ```
 $ gister delete --gist 960473f0df6f8e98d220
 ```
-
-## Demo
-![](asciicast.gif)
-[Asciinema](https://asciinema.org/a/17742)
-
 
 ## Contributions
 
