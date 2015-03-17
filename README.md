@@ -67,6 +67,9 @@ Commands:
 ```
 $ gister create
 00da2a1fddaa77fb40e4
+
+$ cat /tmp/test.txt | gister create
+00da2a1fddaa77fb40e4
 ```
 
 **List gists**

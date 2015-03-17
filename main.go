@@ -36,6 +36,25 @@ func createGist(files []string) error {
 	gist.Public = createCmdPublic
 	gist.Description = createCmdDescription
 
+	// check stdin for data
+	fi, err := os.Stdin.Stat()
+	if err != nil {
+		return err
+	}
+
+	if fi.Mode()&os.ModeNamedPipe > 0 {
+		b, err := ioutil.ReadAll(os.Stdin)
+		if err != nil {
+			return err
+		}
+
+		s := string(b)
+		gf := github.GistFile{
+			Content: &s,
+		}
+		gist.Files[github.GistFilename("Gister1.txt")] = gf
+	}
+
 	for _, f := range files {
 		b, err := ioutil.ReadFile(f)
 		if err != nil {
@@ -49,11 +68,11 @@ func createGist(files []string) error {
 		gist.Files[github.GistFilename(path.Base(f))] = gf
 	}
 
-	if len(files) == 0 {
+	if len(gist.Files) == 0 {
 		edit(gist)
 	}
 
-	gist, _, err := client.Gists.Create(gist)
+	gist, _, err = client.Gists.Create(gist)
 	if err != nil {
 	}
 
