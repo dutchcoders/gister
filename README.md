@@ -69,6 +69,7 @@ Commands:
 ## Samples
 
 **Create a new gist**
+
 ```
 $ gister create
 00da2a1fddaa77fb40e4
@@ -78,6 +79,7 @@ $ cat /tmp/test.txt | gister create
 ```
 
 **List gists**
+
 ```
 $ gister list
 nl5887/00da2a1fddaa77fb40e4
@@ -86,28 +88,33 @@ nl5887/0f70d642f6c91f33535e Slack invite by email
 ```
 
 from another github user:
+
 ```
 $ gister list --user=msoap
 ```
 
 **Search gists**
+
 ```
 $ gister search test
 nl5887/f74a0a0837f609af9552 test
 ```
 
 **Edit**
+
 ```
 $ gister edit f74a0a0837f609af9552
 nl5887/f74a0a0837f609af9552 test
 ```
 
 **Delete a gist**
+
 ```
 $ gister delete --gist 960473f0df6f8e98d220
 ```
 
 **Cat a gist to stdout**
+
 ```
 $ gister cat --gist 960473f0df6f8e98d220 | grep '...'
 ```
@@ -115,6 +122,12 @@ $ gister cat --gist 960473f0df6f8e98d220 | grep '...'
 ## Contributions
 
 Contributions are welcome.
+
+## Thanks
+
+Special thanks goes to:
+
+- [Sergey Mudrik](https://github.com/msoap) for adding cat support
 
 ## Creators
 
