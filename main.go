@@ -127,6 +127,25 @@ func downloadGist(id string, files []string) error {
 	return nil
 }
 
+func catGist(id string, files []string) error {
+	gist, _, err := client.Gists.Get(id)
+	if err != nil {
+		return err
+	}
+
+	for filename, gf := range gist.Files {
+		if len(files) > 0 {
+			if !stringInSlice(string(filename), files) {
+				continue
+			}
+		}
+
+		fmt.Print(*gf.Content)
+	}
+
+	return nil
+}
+
 func infoGist(id string) error {
 	gist, _, err := client.Gists.Get(id)
 	if err != nil {
@@ -313,6 +332,9 @@ var (
 	downloadCmdId        = downloadCmd.Flag("gist", "gist id").Required().String()
 	downloadCmdDest      = downloadCmd.Flag("dest", "destination directory").String()
 	downloadCmdFiles     = downloadCmd.Arg("files", "gist files").Strings()
+	catCmd               = kingpin.Command("cat", "cat gist to stdout")
+	catCmdId             = catCmd.Flag("gist", "gist id").Required().String()
+	catCmdFiles          = catCmd.Arg("files", "gist files").Strings()
 	createCmd            = kingpin.Command("create", "create new gist with specified files")
 	createCmdFiles       = createCmd.Arg("files", "").Strings()
 	createCmdDescription = kingpin.Flag("description", "description").Default("").String()
@@ -351,6 +373,12 @@ func main() {
 			files = append(files, *downloadCmdFiles...)
 		}
 		err = downloadGist(*downloadCmdId, files)
+	case "cat":
+		files := []string{}
+		if catCmdFiles != nil {
+			files = append(files, *catCmdFiles...)
+		}
+		err = catGist(*catCmdId, files)
 	case "create":
 		err = createGist(*createCmdFiles)
 	case "info":

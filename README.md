@@ -50,6 +50,9 @@ Commands:
   download --gist=GIST [<flags>] [<files>]
     download gist
 
+  cat --gist=GIST [<files>]
+    cat gist to stdout
+
   create [<files>]
     create new gist with specified files
 
@@ -82,6 +85,11 @@ nl5887/f74a0a0837f609af9552 test
 nl5887/0f70d642f6c91f33535e Slack invite by email
 ```
 
+from another github user:
+```
+$ gister list --user=msoap
+```
+
 **Search gists**
 ```
 $ gister search test
@@ -97,6 +105,11 @@ nl5887/f74a0a0837f609af9552 test
 **Delete a gist**
 ```
 $ gister delete --gist 960473f0df6f8e98d220
+```
+
+**Cat a gist to stdout**
+```
+$ gister cat --gist 960473f0df6f8e98d220 | grep '...'
 ```
 
 ## Contributions
