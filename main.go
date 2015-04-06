@@ -140,7 +140,7 @@ func catGist(id string, files []string) error {
 			}
 		}
 
-		fmt.Print(*gf.Content)
+		fmt.Printf("---\n# File: %s\n---\n\n%s\n\n", string(filename), *gf.Content)
 	}
 
 	return nil
