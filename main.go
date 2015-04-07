@@ -90,7 +90,7 @@ func uploadGist(files []string) error {
 }
 
 func downloadGist(id string, files []string) error {
-	gist, _, err := client.Gists.Get(id)
+	gist, _, err := client.Gists.Get(clearGistId(id))
 	if err != nil {
 		return err
 	}
@@ -128,7 +128,7 @@ func downloadGist(id string, files []string) error {
 }
 
 func catGist(id string, files []string) error {
-	gist, _, err := client.Gists.Get(id)
+	gist, _, err := client.Gists.Get(clearGistId(id))
 	if err != nil {
 		return err
 	}
@@ -147,7 +147,7 @@ func catGist(id string, files []string) error {
 }
 
 func infoGist(id string) error {
-	gist, _, err := client.Gists.Get(id)
+	gist, _, err := client.Gists.Get(clearGistId(id))
 	if err != nil {
 		return err
 	}
@@ -262,7 +262,7 @@ func edit(gist *github.Gist) error {
 func editGist(id string) error {
 	DebugPrintln("Retrieving gist %s", id)
 
-	gist, _, err := client.Gists.Get(id)
+	gist, _, err := client.Gists.Get(clearGistId(id))
 	if err != nil {
 		return err
 	}
