@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"regexp"
+)
 
 func stringInSlice(a string, list []string) bool {
 	for _, b := range list {
@@ -17,4 +20,9 @@ func DebugPrintln(format string, args ...interface{}) {
 	}
 
 	fmt.Printf(fmt.Sprintf("%s\n", format), args...)
+}
+
+// "user/NNNNNNN" -> "NNNNNNN"
+func clearGistId(id string) string {
+	return regexp.MustCompile(`^[^/]+/`).ReplaceAllLiteralString(id, "")
 }
