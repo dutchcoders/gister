@@ -133,14 +133,23 @@ func catGist(id string, files []string) error {
 		return err
 	}
 
+	filtered_files := []github.GistFile{}
+
 	for filename, gf := range gist.Files {
 		if len(files) > 0 {
 			if !stringInSlice(string(filename), files) {
 				continue
 			}
 		}
+		filtered_files = append(filtered_files, gf)
+	}
 
-		fmt.Printf("---\n# File: %s\n---\n\n%s\n\n", string(filename), *gf.Content)
+	for _, gf := range filtered_files {
+		if len(filtered_files) > 1 {
+			fmt.Printf("---\n# File: %s\n---\n\n%s\n\n", *gf.Filename, *gf.Content)
+		} else {
+			fmt.Print(*gf.Content)
+		}
 	}
 
 	return nil
